@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nạp Tiền</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Chọn số tiền nạp</h1>
+      <div class="button-group">
+        <button class="amount-button" data-amount="50000">50,000 VND</button>
+        <button class="amount-button" data-amount="100000">100,000 VND</button>
+        <button class="amount-button" data-amount="200000">200,000 VND</button>
+      </div>
+      <div class="custom-amount">
+        <label for="custom-amount">Nhập số tiền tùy chỉnh:</label>
+        <input type="number" id="custom-amount" placeholder="Nhập số tiền" />
+      </div>
+      <p class="note">Số tiền cần ít nhất là 35,000 VND</p>
+      <button id="generate-qr" disabled>Tạo QR Nạp Tiền</button>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

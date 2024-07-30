@@ -23,13 +23,6 @@ async function updateFirebase() {
       }
     );
     console.log(response);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    if (!userInfo) {
-      window.location.pathname = "/cancel.html";
-    }
   } catch (error) {
     console.error("Error fetching user info:", error);
     window.location.pathname = "/cancel.html";

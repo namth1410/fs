@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedAmount >= 35000) {
       fetch(
         `${
-          process.env.PAYOS_HOST || "https://fs-mlio.onrender.com"
+          process?.env?.PAYOS_HOST || "https://fs-mlio.onrender.com"
         }/create-payment-link`,
         {
           method: "POST",

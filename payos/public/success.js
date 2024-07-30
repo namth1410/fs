@@ -22,6 +22,12 @@ async function updateFirebase() {
         }),
       }
     );
+    const newUrl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.replaceState({ path: newUrl }, "", newUrl);
     console.log(response);
   } catch (error) {
     console.error("Error fetching user info:", error);

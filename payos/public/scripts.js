@@ -33,13 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   generateQrButton.addEventListener("click", function () {
     if (selectedAmount >= 35000) {
-      fetch(`${process.env.PAYOS_HOST}/create-payment-link`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: selectedAmount }),
-      })
+      fetch(
+        `${
+          process.env.PAYOS_HOST || "https://fs-mlio.onrender.com"
+        }/create-payment-link`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount: selectedAmount }),
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");

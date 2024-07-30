@@ -27,9 +27,6 @@ async function updateFirebase() {
       throw new Error("Network response was not ok");
     }
 
-    const userInfo = await response.json();
-    console.log("User Info:", userInfo);
-
     if (!userInfo) {
       window.location.pathname = "/cancel.html";
     }

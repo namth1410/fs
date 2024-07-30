@@ -1,13 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get("userId");
 const amount = urlParams.get("amount");
+const id = urlParams.get("id");
+const orderCode = urlParams.get("orderCode");
 
 async function updateFirebase() {
   if (!userId) {
     window.location.pathname = "/cancel.html";
     return;
   }
-
   try {
     const response = await fetch(
       `https://fs-mlio.onrender.com/update-firebase`,
@@ -19,15 +20,11 @@ async function updateFirebase() {
         body: JSON.stringify({
           userId: userId,
           amount: amount,
+          id: id,
+          orderCode: orderCode,
         }),
       }
     );
-    const newUrl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.replaceState({ path: newUrl }, "", newUrl);
     console.log(response);
   } catch (error) {
     console.error("Error fetching user info:", error);

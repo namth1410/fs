@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("userId");
+
 document.addEventListener("DOMContentLoaded", function () {
   const amountButtons = document.querySelectorAll(".amount-button");
   const customAmountInput = document.getElementById("custom-amount");
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: selectedAmount }),
+        body: JSON.stringify({ amount: selectedAmount, userId: userId }),
       })
         .then((response) => {
           if (!response.ok) {
@@ -64,3 +67,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+async function getUserIdFromUrl() {
+  console.log("User ID:", userId);
+
+  if (!userId) {
+    window.location.pathname = "/cancel.html";
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://fs-mlio.onrender.com/user?userId=${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const userInfo = await response.json();
+    console.log("User Info:", userInfo);
+
+    if (!userInfo) {
+      window.location.pathname = "/cancel.html";
+    }
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    window.location.pathname = "/cancel.html";
+  }
+}
+
+window.onload = getUserIdFromUrl;

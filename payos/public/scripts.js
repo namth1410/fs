@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   generateQrButton.addEventListener("click", function () {
     if (selectedAmount >= 35000) {
-      fetch("http://localhost:3030/create-payment-link", {
+      fetch(`${process.env.PAYOS_HOST}/create-payment-link`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

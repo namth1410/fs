@@ -16,7 +16,7 @@ app.use("/payment", require("./controllers/payment-controller"));
 app.use("/order", require("./controllers/order-controller"));
 
 app.post("/create-payment-link", async (req, res) => {
-  const YOUR_DOMAIN = "http://localhost:3030";
+  const YOUR_DOMAIN = `${process.env.PAYOS_HOST}`;
   const { amount } = req.body;
   const body = {
     orderCode: Number(String(Date.now()).slice(-6)),

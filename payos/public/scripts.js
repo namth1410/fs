@@ -72,7 +72,7 @@ async function getUserIdFromUrl() {
   console.log("User ID:", userId);
 
   if (!userId) {
-    window.location.pathname = "/cancel.html";
+    window.location.pathname = "/error.html";
     return;
   }
 
@@ -94,11 +94,11 @@ async function getUserIdFromUrl() {
     console.log("User Info:", userInfo);
 
     if (!userInfo) {
-      window.location.pathname = "/cancel.html";
+      window.location.pathname = "/error.html";
     }
   } catch (error) {
     console.error("Error fetching user info:", error);
-    window.location.pathname = "/cancel.html";
+    window.location.pathname = "/error.html";
   }
 }
 

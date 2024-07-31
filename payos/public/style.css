@@ -68,17 +68,33 @@ body {
 }
 
 .payment-titlte {
-  color: #6655ff;
+  color: #dc3545;
   font-size: larger;
 }
 
 #return-page-btn {
-  margin-top: 10px;
-  border: 1px solid #6655ff;
-  border-radius: 5px;
-  background-color: #6655ff;
-  padding: 10px 8px;
+  background-color: #007bff;
   color: white;
-  text-decoration: none;
-  font-size: small;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#return-page-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#return-page-btn:active {
+  background-color: #004080;
+  transform: scale(0.95);
+}
+
+.error-title {
+  font-size: 24px;
+  color: #dc3545;
+  margin-bottom: 20px;
 }

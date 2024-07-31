@@ -6,7 +6,7 @@ const orderCode = urlParams.get("orderCode");
 
 async function updateFirebase() {
   if (!userId) {
-    window.location.pathname = "/cancel.html";
+    window.location.pathname = "/error.html";
     return;
   }
   try {
@@ -28,7 +28,7 @@ async function updateFirebase() {
     console.log(response);
   } catch (error) {
     console.error("Error fetching user info:", error);
-    window.location.pathname = "/cancel.html";
+    window.location.pathname = "/error.html";
   }
 }
 

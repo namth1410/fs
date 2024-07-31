@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
     updateGenerateQrButtonState();
   });
 
+  customAmountInput.addEventListener("keydown", function (event) {
+    if (event.key === "e" || event.key === ".") {
+      event.preventDefault();
+    }
+  });
+
   function updateGenerateQrButtonState() {
     if (selectedAmount >= 35000) {
       generateQrButton.classList.add("active");

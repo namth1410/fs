@@ -375,8 +375,10 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.Text & Attribute.Required;
-    price: Attribute.Text;
     images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    type: Attribute.Enumeration<['iPhone', 'iPad', 'Mac', 'Watch']> &
+      Attribute.Required;
+    price: Attribute.BigInteger & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

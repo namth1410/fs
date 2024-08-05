@@ -16,18 +16,30 @@
       "type": "text",
       "required": true
     },
-    "price": {
-      "type": "text"
-    },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "iPhone",
+        "iPad",
+        "Mac",
+        "Watch"
       ],
-      "type": "media",
-      "multiple": true
+      "required": true
+    },
+    "price": {
+      "type": "biginteger",
+      "required": true
     }
   }
 }

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { getProducts } from "../../appdata/productsSlice";
 import { useAppDispatch } from "../../appdata/store";
 
-function Home() {
+function Iphone() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function Home() {
     // eslint-disable-next-line
   }, []);
 
-  return <div className="dark:bg-slate-400">Home</div>;
+  return <div className="dark:bg-slate-400">Iphone</div>;
 }
 
-export default Home;
+export default Iphone;

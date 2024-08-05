@@ -29,7 +29,8 @@ const ConnectRedirect: React.FC = () => {
           navigate("/error");
         });
     }
-  }, [location.search, navigate, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">

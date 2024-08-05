@@ -31,8 +31,8 @@ const ProductDetails: React.FC = () => {
     return <div>Product not found</div>;
   }
 
-  const images: ImageData[] = product.attributes.images?.data ?? [];
-  const mainImage = images[0].attributes.url;
+  const images: ImageData[] = product.attributes.images.data ?? [];
+  const mainImage = images.length > 0 ? images[0].attributes.url : "";
   const thumbnails = images.map((img) => img.attributes.formats.thumbnail.url);
 
   return (

@@ -6,8 +6,8 @@ export interface Product {
 export interface ProductAttributes {
   name: string;
   price: string;
-  images?: {
-    data: ImageData[];
+  images: {
+    data?: ImageData[];
   };
   description: string;
   type: string;

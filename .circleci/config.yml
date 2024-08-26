@@ -14,6 +14,9 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
+      - run:
+          name: Move to strapi directory
+          command: cd strapi
       - docker/check:
           docker-username: DOCKER_USER
           docker-password: DOCKER_PASSWORD

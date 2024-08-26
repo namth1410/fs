@@ -1,9 +1,28 @@
+import { Carousel } from "flowbite-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductDetails } from "../../appdata/productDetailsSlice";
 import { useAppDispatch, useAppSelector } from "../../appdata/store";
 import { ImageData } from "../../models/product.model";
 
+const CustomLeftControl = () => (
+  <button
+    type="button"
+    className="flex items-center justify-center w-10 h-10 bg-gray-800 text-white rounded-full hover:bg-gray-700"
+  >
+    <ChevronLeft className="h-6 w-6" />
+  </button>
+);
+
+const CustomRightControl = () => (
+  <button
+    type="button"
+    className="flex items-center justify-center w-10 h-10 bg-gray-800 text-white rounded-full hover:bg-gray-700"
+  >
+    <ChevronRight className="h-6 w-6" />
+  </button>
+);
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
@@ -32,36 +51,29 @@ const ProductDetails: React.FC = () => {
   }
 
   const images: ImageData[] = product.attributes.images.data ?? [];
-  const mainImage = images.length > 0 ? images[0].attributes.url : "";
-  const thumbnails = images.map((img) => img.attributes.formats.thumbnail.url);
+  const thumbnails = images.map((img) => img.attributes.url);
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row">
-        <div className="lg:w-1/2 flex flex-col items-center">
-          <img
-            src={`http://localhost:1337${mainImage}`}
-            alt={product.attributes.name}
-            className="w-full h-auto object-contain"
-          />
-
-          {/* <Carousel opts={{ loop: false }} className="w-full max-w-xs">
-            <CarouselContent>
-              {thumbnails.map((thumbnail, index) => (
-                <CarouselItem key={index}>
-                  <img
-                    key={index}
-                    src={`http://localhost:1337${thumbnail}`}
-                    alt={product.attributes.name}
-                    className="w-16 h-16 object-contain"
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel> */}
+        <div className="lg:w-1/2 flex flex-col items-center shadow-lg border border-gray-300 rounded-lg p-4">
+          <Carousel
+            slideInterval={1000}
+            leftControl={<CustomLeftControl />}
+            rightControl={<CustomRightControl />}
+            className="h-50vh lg:h-full"
+          >
+            {thumbnails.map((thumbnail) => (
+              <img
+                key={thumbnail}
+                src={`http://localhost:1337${thumbnail}`}
+                alt={product.attributes.name}
+                className="w-full h-full object-contain"
+              />
+            ))}
+          </Carousel>
         </div>
+
         <div className="lg:w-1/2 lg:pl-8">
           <h1 className="text-2xl font-bold mb-2">{product.attributes.name}</h1>
           <div className="flex items-center mb-4">
@@ -97,7 +109,7 @@ const ProductDetails: React.FC = () => {
               ></button>
             ))}
           </div>
-          <div className="bg-gray-100 p-4 rounded mb-4">
+          <div className="p-4 rounded mb-4">
             <h2 className="text-lg font-semibold mb-2">Ưu đãi</h2>
             <ul className="list-disc list-inside">
               {/* Thay đổi theo dữ liệu thực tế */}

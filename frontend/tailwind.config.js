@@ -1,4 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
+const flowbite = require("flowbite-react/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,6 +8,8 @@ module.exports = {
     "app/**/*.{ts,tsx}",
     "components/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx, js, jsx}",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
+    flowbite.content(),
   ],
   theme: {
     container: {
@@ -17,6 +20,9 @@ module.exports = {
       },
     },
     extend: {
+      height: {
+        "50vh": "50vh",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -76,5 +82,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("flowbite/plugin")],
 };

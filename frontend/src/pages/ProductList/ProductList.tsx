@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../components/ui/select";
+import { Skeleton } from "../../components/ui/skeleton";
 
 function Iphone() {
   const dispatch = useAppDispatch();
@@ -20,6 +21,7 @@ function Iphone() {
 
   const products = useAppSelector((state) => state.productsRedux.products);
   const pagination = useAppSelector((state) => state.productsRedux.pagination);
+  const status = useAppSelector((state) => state.productsRedux.status);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("price:asc");
@@ -42,7 +44,7 @@ function Iphone() {
   }, [productType]);
 
   return (
-    <div className="rounded-md border dark:bg-slate-400 p-4">
+    <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">
         Danh sách sản phẩm {productType}
       </h1>
@@ -65,19 +67,33 @@ function Iphone() {
       </div>
 
       <div className="grid grid-cols-4 gap-6 auto-rows-min sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            image={
-              "http://localhost:1337/uploads/0001101_pink_550_0e3f260e75.webp"
-            }
-            id={product.id}
-            name={product.attributes.name}
-            currentPrice={product.attributes.price}
-            oldPrice={product.attributes.price}
-            discount={20}
-          />
-        ))}
+        {status === "loading"
+          ? Array(4)
+              .fill(0)
+              .map((_, index) => (
+                <div key={index} className="flex flex-col space-y-3">
+                  <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-[250px]" />
+                    <Skeleton className="h-4 w-[200px]" />
+                  </div>
+                </div>
+              ))
+          : products.map((product) => (
+              <ProductCard
+                key={product.id}
+                image={
+                  product.attributes.images.data?.[0].attributes.url
+                    ? `${process.env.REACT_APP_API_URL}${product.attributes.images.data?.[0].attributes.url}`
+                    : "/logo512.png"
+                }
+                id={product.id}
+                name={product.attributes.name}
+                currentPrice={product.attributes.price}
+                oldPrice={product.attributes.price}
+                discount={20}
+              />
+            ))}
       </div>
       {pagination && (
         <div className="flex justify-center mt-4">

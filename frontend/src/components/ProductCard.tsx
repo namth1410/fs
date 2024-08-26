@@ -1,3 +1,4 @@
+import { Button, Card } from "flowbite-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { generateSlug } from "../lib/utils";
@@ -27,14 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="inline-block bg-gray-900 p-4 rounded-lg transition-transform transform hover:scale-105">
-      <div className="relative w-full h-48 mb-2">
-        <img
-          src={image}
-          alt={name}
-          className="absolute inset-0 w-full h-full object-contain"
-        />
-      </div>
+    <Card className="max-w-sm" imgSrc={image}>
       <div className="p-4">
         <h2 className="text-white text-lg font-bold">{name}</h2>
         <div className="flex items-center justify-between mt-2">
@@ -46,14 +40,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </span>
         </div>
         <div className="text-right text-green-500 text-sm">-{discount}%</div>
-        <button
-          onClick={handleClick}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-        >
-          Xem chi tiết
-        </button>
       </div>
-    </div>
+      <Button onClick={handleClick}>
+        Xem chi tiết
+        <svg
+          className="-mr-1 ml-2 h-4 w-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </Button>
+    </Card>
   );
 };
 

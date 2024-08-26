@@ -46,7 +46,10 @@ const productsSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.status = "idle";
         state.products = action.payload.data;
-        state.pagination = action.payload.meta.pagination;
+        const _pagination = action.payload.meta.pagination;
+        if (_pagination.total !== 0) {
+          state.pagination = action.payload.meta.pagination;
+        }
       })
       .addCase(getProducts.rejected, (state) => {
         state.status = "failed";
